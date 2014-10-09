@@ -1,0 +1,109 @@
+<!Doctype html>
+<html>
+<head>
+        <title>Project 2 - Period 1</title>
+        <link type="text/css" rel="stylesheet" href="style.css" />
+       
+
+</head>
+<body>
+<h1> Tic Tac Toe</h1>
+
+  <div class="container">
+
+        
+
+        <div id="article" class="">
+          <!-- <p>Tic Tac Toe</p> -->
+
+            <div id="c0" class="box"><p>0</p></div>
+
+            <div id="c1" class="box"><p>1</p></div>
+
+            <div id="c2" class="box"><p>2</p></div>
+      
+            <div class="clearboth"></div>
+            <div id="c3" class="box"><p>3</p></div>
+            <div id="c4" class="box"><p>4</p></div>
+            <div id="c5" class="box"><p>5</p></div>
+
+            <div class="clearboth"></div>
+            <div id="c6" class="box"><p>6</p></div>         
+            <div id="c7" class="box"><p>7</p></div>
+            <div id="c8" class="box"><p>8</p></div>
+        </div>
+
+        <p id="demo"></p>
+
+
+
+    </div>
+
+
+
+ <script type="text/javascript">
+//Assigns variables to player1 and player 2, as objects, and name them Player One and Player Two
+        var player1 = {name: "Player One"};
+        var player2 = {name: "Player Two"};
+
+//determine that current cell matches the cell ID
+   
+       var cellArray = document.getElementsByClassName("box");
+
+
+       var turnKeeper = {
+            turn: 0
+        }
+
+
+//write For loop that starts at i, goes through cellArray
+ for(var i = 0;i < cellArray.length; i++)
+
+    (function (num){
+    cellArray[num].onclick = function(){
+                
+        if(turnKeeper.turn == 0){  
+        cellArray[num].className += " boxForX";
+
+        turnKeeper.turn = 1;
+                }
+
+        else{
+        cellArray[num].className += " boxForO";
+        turnKeeper.turn = 0;
+
+                }
+                 //Make a for loop
+
+                 //Count how many X's or O's (classes)
+
+                 //if it's 9, analysis the board.
+
+                
+             }
+        })(i);
+
+
+//do a cellArray onclick, than function
+
+//if turnkeeper.turn is 0
+
+//if turnkeeper.turn is 1
+
+
+
+ 
+      
+        
+
+
+
+
+        var winners = [["c0","c1","c2"],["c3","c4","c5"],["c6","c7","c8"],["c0","c3","c6"],["c1","c4","c7"],["c2","c5","c8"],["c0","c4","c8"],["c2","c4","c6"]];
+
+
+     
+
+        </script>
+</body>
+</html>

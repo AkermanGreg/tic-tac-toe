@@ -1,0 +1,74 @@
+<!Doctype html>
+<html>
+<head>
+        <title>Project 2 - Period 1</title>
+        <link type="text/css" rel="stylesheet" href="style.css" />
+        <script type="text/javascript">
+
+        var winners = [["c0","c1","c2"],["c3","c4","c5"],["c6","c7","c8"],["c0","c3","c6"],["c1","c4","c7"],["c2","c5","c8"],["c0","c4","c8"],["c2","c4","c6"]];
+
+
+            // when window loads call function intializeGame
+            window.onload = function(){
+                initializeGame();
+            };
+var board = ["", "", "", "", "", "", "", "", ""]
+            function initializeGame(){
+                var count = 0;
+                for(var cellid = 0; cellid < 9; cellid++) {
+                    var currentCell = document.getElementById("c"+cellid);
+
+                    currentCell.addEventListener("click", function(){
+                        this.style.backgroundImage = ((count % 2) == 0) ? "url(x.png)" : "url(O.png)"; 
+                        this.style.backgroundSize = "140px 140px";
+                        this.style.backgroundRepeat = "no-repeat";
+                        this.style.backgroundPosition = "center";
+
+                        count++;
+
+                        console.log(this.id)
+                           
+                    });
+                }
+               
+            }
+
+        </script>
+
+</head>
+<body>
+
+
+  <div class="container">
+
+        <div id="article" class="">
+          <!-- <p>Tic Tac Toe</p> -->
+
+            <div id="c0" class="float_left box"><p>0</p></div>
+
+            <div id="c1" class="g float_left box"><p>1</p></div>
+
+            <div id="c2" class="b float_left box"><p>2</p></div>
+      
+            <div class="clearboth"></div>
+            <div id="c3" class="r float_left box"><p>3</p></div>
+            <div id="c4" class="g float_left box"><p>4</p></div>
+            <div id="c5" class="b float_left box"><p>5</p></div>
+
+            <div class="clearboth"></div>
+            <div id="c6" class="r float_left box"><p>6</p></div>         
+            <div id="c7" class="g float_left box"><p>7</p></div>
+            <div id="c8" class="b float_left box"><p>8</p></div>
+        </div>
+
+        <p id="demo"></p>
+
+
+
+    </div>
+
+
+
+
+</body>
+</html>
