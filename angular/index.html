@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="TTTApp">
+<head>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+	<script src="app.js"></script>
+
+</head>
+<body>
+    <div ng-controller="TTTController">
+        <h1>
+        CLICK COUNTER: {{movecounter}}
+        
+       
+            <div ng-repeat="currentRow in cellList">
+             
+
+                <div class="allCellsAlways" ng-repeat="currentCell in currentRow" 
+                ng-class="{xclass: currentCell.status=='X', oclass: currentCell.status =='O'}" 
+
+                ng-click="playerPicks(currentCell)">
+
+
+                </div>
+
+
+              
+            </div>
+
+        
+         <br />
+    
+    <br>
+   
+    <p></p><br
+    <button ng-click="testJS()">TEST BUTTON</button>
+</div>
+
+</body>
+</html>
