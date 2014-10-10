@@ -29,9 +29,9 @@ console.log($scope.oMoves)
 $scope.oMoves= [];
 
 //array with winning logic 
-$scope.possibleWinner= [
-[0,1,2], [3,4,5], [6,7,8], 
-[0,3,6], [1,4,7], [2,5,8],
+//$scope.possibleWinner= [
+//[0,1,2], [3,4,5], [6,7,8], 
+//[0,3,6], [1,4,7], [2,5,8],
 
 
 
