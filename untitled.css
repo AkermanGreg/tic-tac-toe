@@ -1,0 +1,87 @@
+
+.container{
+  min-height: 100%;
+  margin: 0; 
+  border: 0;
+}
+#article{
+	height: 450px;
+	width:500px;
+	text-align: center;
+  /*background-color:red;*/
+	border-radius: 10px;
+  margin: 0 auto; 
+  	border: 2px dotted black;
+}
+
+#article img {
+	{width: 150px; height: 150px;}
+}
+.box{
+	width:150px; 
+	height:150px; 
+
+	text-align: center;
+padding: 5px;
+
+}
+
+div img {width: 150px; height: 150px;}
+
+.r img {width: 150px; height: 150px;}
+
+.g img {width: 150px; height: 150px;}
+
+
+.b img {width: 150px; height: 150px;}
+
+.r{
+	background-color: lightgrey;
+
+}
+
+.g{
+	margin-left:15px;
+	margin-right:15px;
+	background-color: lightgrey;
+}
+
+.b{
+	background-color: lightgrey;
+}
+
+#c0 {
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+p {
+	display: table-cell; 
+	width: 150px; 
+	height: 150px; 
+	vertical-align: middle; 
+	text-align: center; 
+	font-family: arial; 
+	font-size: 35pt; 
+	color: black;
+}
+
+/*the usual suspects begin*/
+.float_right{
+	float: right;
+}
+.float_left{
+	float: left;
+}
+/*needed to cause auto expansion of container div*/
+.clearboth{
+	clear: both;
+}
+/*the usual suspects end*/
+html {
+    height: 100%;
+    }
+
+body {
+    height: 100%;
+    }
