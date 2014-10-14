@@ -1,6 +1,4 @@
 
-
-
 var TTTApp = angular.module('TTTApp', []);
 
 TTTApp.controller('TTTController', function ($scope) {

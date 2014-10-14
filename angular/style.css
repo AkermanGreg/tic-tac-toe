@@ -1,25 +1,32 @@
 .theBox {
-	width: 100%;
-	height: 468px;
-    border-style: solid;
-    border-color: red;
-    background-color: yellow;
+	height: 480px;
+    width:500px;
+    text-align: center;
+ background-color: white;
+    border-radius: 10px;
+  margin: 0 auto; 
 }
 
-//
+h1 {
+    background-color: black;
+    letter-spacing: 3px;
+    color: white;
+    font-size: 20px;
+    width: 100%;
+    padding: 10px;
+    margin: 0 auto; 
+}
 
 .clearFix {clear:both;
 background-color: blue;}
 
 .allCellsAlways {
-    width: 30%;
-	height: 150px;
-	display: inline-block;
-    float: left;
-    margin: 0px ;
-    padding: 0px ;
-    border-style: solid;
-    border-color: blue;
+   width:150px; 
+    height:150px; 
+float: left;
+    text-align: center;
+padding: 5px;
+border: 1px solid black;
 }
 
 .xclass {

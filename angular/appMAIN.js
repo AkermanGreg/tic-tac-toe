@@ -23,33 +23,15 @@ TTTApp.directive('myDirective', function () {
 });
 TTTApp.controller('TTTController', function ($scope) {
 
-$scope.boardRows = 6;
-$scope.boardColumns = 6;
-$scope.board = [];
-
-$scope.clearFunction = function(){
-  return (this.$index % $scope.boardColumns == 0);
-}
-
-$scope.board.length = $scope.boardRows * $scope.boardColumns;
-
-
 
 
 //List of positions on board
 $scope.resetButton = function(){
   $scope.cellList = [
-  {status: 0}, 
-  {status: 1}, 
-   {status: 2}, 
-  {status: 3},
-   {status: 4}, 
-  {status: 5},
-   {status: 6}, 
-  {status: 7},
-   {status: 8}
-  ]  ;
-
+    {status: 0}, {status: 1}, {status: 2}, 
+    {status: 3}, {status: 4}, {status: 5}, 
+    {status: 6}, {status: 7}, {status: 8}
+  ];
   $scope.movecounter = 0 ;
   console.log("resetButton")
   $scope.xMoves= [];
@@ -158,3 +140,28 @@ $scope.recordClickO = function(catchBallO){
  $scope.resetButton();
 
 }) ;
+
+<!DOCTYPE html>
+<html ng-app="TTTApp">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+  <script src="app.js"></script>
+
+</head>
+<body><h1> Tic Tac Toe</h1>
+    <div class="theBox" ng-controller="TTTController" > 
+        <div x-my-directive="" x-rating-value="7"></div>
+      <div ng-repeat="currentCell in cellList">
+        <div class="allCellsAlways" ng-click="playerPicks(currentCell)"
+           ng-class="{xclass: currentCell.status=='X', oclass: currentCell.status =='O'}" ng-click="playerPicks(currentCell)">
+          Cell Contents: {{currentCell.status}}
+        </div>
+      </div>
+        <button class="button" x-ng-click="resetButton()">Reset</button>
+    </div>
+
+</div>
+
+</body>
+</html>
