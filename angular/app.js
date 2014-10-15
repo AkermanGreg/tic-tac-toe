@@ -1,9 +1,11 @@
+var myHttp;
+
 var TTTApp = angular.module('TTTApp', []);
 
 TTTApp.directive('myDirective', function () {
   return {
     template: '<ul class="rating">' +
-                  '<li x-ng-repeat="star in stars" class="filled">' +
+                  '<li x-ng-repeat="star in stars" class="filled" x-ng-click="toggle($index)">' +
                       '\u2605' +
                   '</li>' +
                 '</ul>',
@@ -13,15 +15,25 @@ TTTApp.directive('myDirective', function () {
     },
     link: function (scope, elem, attrs) {
       console.log("Directive", scope, elem, attrs);
-      scope.stars = [];
-      for(var x = 0; x < parseInt(scope.ratingValue); x++)
-      {
-        scope.stars.push({});
-      }
+
+      scope.$watch("ratingValue", function(newThing, oldThing){
+        scope.stars = [];
+        for(var x = 0; x < parseInt(newThing); x++)
+        {
+          scope.stars.push({});
+        }
+      });
+      scope.toggle = function(index) {
+          scope.ratingValue = index + 1;
+};
     }
   }
 });
-TTTApp.controller('TTTController', function ($scope) {
+TTTApp.controller('TTTController', function ($scope, $http) {
+myHttp = $http;
+
+myScope = $scope;
+$scope.someVar =5;
 
 $scope.boardRows = 6;
 $scope.boardColumns = 6;
@@ -51,9 +63,10 @@ $scope.resetButton = function(){
   ]  ;
 
   $scope.movecounter = 0 ;
-  console.log("resetButton")
+  console.log($scope.movecounter)
   $scope.xMoves= [];
   $scope.oMoves= [];
+  $scope.render = "";
 };
 
 //array with winning logic 
@@ -61,14 +74,16 @@ $scope.possibleWinner= [
 [0,1,2], [3,4,5], [6,7,8], 
 [0,3,6], [1,4,7], [2,5,8],
 [0,4,8], [2,4,6]];
-
-
+// j goes through the possible winner PRIMARY array (8 times)
+//k goes through each sub-array's value.. there are 24 thus 24 times
+//i 
 
 var winningFunction = function(moves) {
   // Go through all 8 possible wining moves
   for (var j = 0; j < $scope.possibleWinner.length; j++) {
     // For each one of these, we'll count up as we go if we find matches.  3 in a row means a win!
     var howManyMatches = 0;
+
     // The actual 3-member array of a winning condition
     var thisWinner = $scope.possibleWinner[j];
     // Go through this damned condition, all 3 numbers
@@ -89,26 +104,35 @@ var winningFunction = function(moves) {
     if(howManyMatches == 3) 
     {
       // Holy shit, yes we did!  We have a winner.
-      if (($scope.movecounter % 2) == 1) {
-      $scope.$apply(); alert("Hot damn!  x won.", thisWinner);
-      
-       
+      if (($scope.movecounter % 2) == 1) 
+      {
+        $scope.render = "X Has Won!"
       }
-      else{
-    
-      alert("Hot damn!  0 won.", thisWinner);
-      
-    };
+
+      else
+      {
+       $scope.render = "O Has Won!"
+      };
+
     }
+
   }
+  console.log($scope.movecounter, $scope.render);
+ if ($scope.movecounter == 9 && $scope.render == "" ||
+  $scope.movecounter == 8 && $scope.render == "" )
+ {
+  
+  $scope.render = "it's a tie";
+ }
+
 };
 
 //Pushes Player 1 Clicks into Array xMoves[]
 $scope.recordClickX = function(catchBallX){
+  console.log("catch ball " + catchBallX);
   $scope.xMoves.push(catchBallX);
-  console.log($scope.xMoves);
+  // console.log($scope.xMoves);
 };
-
 
 //Pushes Player 2 Clicks into Array oMoves[]
 $scope.recordClickO = function(catchBallO){
@@ -116,10 +140,10 @@ $scope.recordClickO = function(catchBallO){
   console.log($scope.oMoves);
 };
 
+$scope.myNumber = 5;
 
 //Move Counter
   $scope.movecounter = 0 ;
-
 
   $scope.playerPicks = function(thisCell) {
     if (typeof thisCell.status == "number") { // if status is a number allow for status change
@@ -129,7 +153,6 @@ $scope.recordClickO = function(catchBallO){
    
       $scope.recordClickX(thisCell.status)
       thisCell.status = "X" ;
- 
 
     } else { //if movecounter is even do the following
     $scope.recordClickO(thisCell.status)

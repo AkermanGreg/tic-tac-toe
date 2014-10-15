@@ -2,23 +2,58 @@
 	height: 480px;
     width:500px;
     text-align: center;
- background-color: white;
+    background-color: white;
     border-radius: 10px;
-  margin: 0 auto; 
+    margin: 0 auto; 
 }
 
 h1 {
     background-color: black;
     letter-spacing: 3px;
     color: white;
-    font-size: 20px;
+    font-size: 30px;
+    vertical-align: middle;
     width: 100%;
-    padding: 10px;
-    margin: 0 auto; 
+   height: 50px;
+    margin: 0 auto;
+    text-align: center; 
+    font-family: 'Walter Turncoat', cursive;
+}
+.leftBar {
+    width: 50px;
+    background-color: black;
+    float:left;
+    height: 1000px;
+    color: black;
+
+}
+.rightBar {
+    width: 50px;
+    background-color: black;
+    float:right;
+    height: 1000px;
+    color: black;
+
+}
+.leftBar2 {
+    width: 50px;
+    padding-left: 20px;
+    float:left;
+    height: 1000px;
+    color: black;
+
+}
+.rightBar2 {
+    width: 50px;
+  
+    float:right;
+    height: 1000px;
+    color: black;
+
 }
 
 .clearFix {clear:both;
-background-color: blue;}
+}
 
 .allCellsAlways {
    width:150px; 
