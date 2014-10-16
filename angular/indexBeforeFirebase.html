@@ -12,15 +12,15 @@
   <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
   <!--App  --> 
   <script src="app.js"></script>
-  
 
 </head>
-<body><h1> Martians vs. Humans</h1>
+<body><h1> Tic Tac Toe</h1>
     <div ng-controller="TTTController" > 
 
-   
-    <div class="leftBar2"> Martian Wins: <div x-ng-bind="gameScore.oScore"></div></div>
- <div class="rightBar2"> Earth Wins: <div x-ng-bind="gameScore.xScore"></div> </div>
+      <div class="leftBar">f</div>
+ <div class="rightBar">f</div>
+    <div class="leftBar2">f</div>
+ <div class="rightBar2">f</div>
 <div class="theBox">
    <select ng-model="rateMe">
       <option value="1">1</option>
@@ -31,20 +31,16 @@
     </select>
   
   <div x-my-directive="" x-rating-value="rateMe"></div>
-      <div x-ng-repeat="currentCell in cellList track by $index">
+      <div ng-repeat="currentCell in cellList track by $index">
 
         <div class="allCellsAlways" ng-click="playerPicks(currentCell)"
-           x-ng-class="{xclass: currentCell.status=='X', oclass: currentCell.status =='O'}" ng-click="playerPicks(currentCell)" ng-click="{'allCellsAlways:active' : check}">
+           ng-class="{xclass: currentCell.status=='X', oclass: currentCell.status =='O'}" ng-click="playerPicks(currentCell)">
           Cell Contents: {{currentCell.status}}
         </div></div>
       </div>
-<div x-ng-bind="render"></div>
-
-
-
+      <div x-ng-bind="render"></div>
         <button class="button" x-ng-click="resetButton()">Reset</button>
-     
-  
+    
     </div>
 
 </div>

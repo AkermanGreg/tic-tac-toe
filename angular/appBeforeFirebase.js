@@ -1,49 +1,73 @@
-var TTTApp = angular.module('TTTApp', ["firebase"]);
+var myHttp;
 
+var TTTApp = angular.module('TTTApp', []);
 
-TTTApp.controller('TTTController', function($scope, $http, $firebase) {
+TTTApp.directive('myDirective', function () {
+  return {
+    template: '<ul class="rating">' +
+                  '<li x-ng-repeat="star in stars" class="filled" x-ng-click="toggle($index)">' +
+                      '\u2605' +
+                  '</li>' +
+                '</ul>',
+    restrict: 'A',
+    scope: {
+      ratingValue: "="
+    },
+    link: function (scope, elem, attrs) {
+      console.log("Directive", scope, elem, attrs);
+
+      scope.$watch("ratingValue", function(newThing, oldThing){
+        scope.stars = [];
+        for(var x = 0; x < parseInt(newThing); x++)
+        {
+          scope.stars.push({});
+        }
+      });
+      scope.toggle = function(index) {
+          scope.ratingValue = index + 1;
+};
+    }
+  }
+});
+TTTApp.controller('TTTController', function ($scope, $http) {
 myHttp = $http;
 
-var gregTTT = new Firebase("https://gregttt.firebaseio.com");
+myScope = $scope;
+$scope.someVar =5;
 
-// $scope.gameElements = $firebase(gregTTT);
+$scope.boardRows = 6;
+$scope.boardColumns = 6;
+$scope.board = [];
 
+$scope.clearFunction = function(){
+  return (this.$index % $scope.boardColumns == 0);
+}
 
-//   $scope.playerPicks = function() { 
-//     //Add manually using standard JavaScript
-//     gregTTT.push( {recordClickX:$scope.recordClickX , recordClickO:$scope.recordClickO } );
-// $scope.recordClickX;
-// $scope.recordClickO ;
+$scope.board.length = $scope.boardRows * $scope.boardColumns;
 
-//   };
 
 
 
 //List of positions on board
 $scope.resetButton = function(){
-  $scope.cellList = 
-  [
+  $scope.cellList = [
   {status: 0}, 
   {status: 1}, 
-  {status: 2}, 
+   {status: 2}, 
   {status: 3},
-  {status: 4}, 
+   {status: 4}, 
   {status: 5},
-  {status: 6}, 
+   {status: 6}, 
   {status: 7},
-  {status: 8}
-  ];
+   {status: 8}
+  ]  ;
 
-$scope.movecounter = 0 ;
-
-$scope.xMoves= [];
-$scope.oMoves= [];
-$scope.render = "";
-$scope.gameInProgress = true;
-
+  $scope.movecounter = 0 ;
+  console.log($scope.movecounter)
+  $scope.xMoves= [];
+  $scope.oMoves= [];
+  $scope.render = "";
 };
-
-$scope.gameScore= {xScore: 0, oScore: 0, ties: 0};
 
 //array with winning logic 
 $scope.possibleWinner= [
@@ -79,44 +103,21 @@ var winningFunction = function(moves) {
     // Did we get 3 total matches in the testing above?
     if(howManyMatches == 3) 
     {
-      $scope.gameInProgress = false;
       // Holy shit, yes we did!  We have a winner.
       if (($scope.movecounter % 2) == 1) 
-        {
+      {
         $scope.render = "X Has Won!"
-        console.log("X Wins: " + $scope.gameScore.xScore);
-
-        // for (i=0; i < cellList.status.length; i++) {
-        //   if (cellList[i].status == 0) {
-        //     cellList[i].status = "lost" ;
-        //   }
-
-        
-        $scope.gameScore.xScore ++;
-
-        // console.log($scope.gameScore.xScore)
-
-        console.log($scope.movecounter, $scope.render);
-        }
+      }
 
       else
-        {
+      {
        $scope.render = "O Has Won!"
-        console.log("O Wins: " + $scope.gameScore.xScore);
-         // for (i=0; i < $scope.cellList.status.length; i++) {
-         //  if (typeof cellList[i].status == "number") {
-         //    typeof cellList[i].status = "string" ;
-         //  }}
-       $scope.gameScore.oScore ++;
-
-        console.log($scope.movecounter, $scope.render);
-        };
+      };
 
     }
 
   }
-
-
+  console.log($scope.movecounter, $scope.render);
  if ($scope.movecounter == 9 && $scope.render == "" ||
   $scope.movecounter == 8 && $scope.render == "" )
  {
@@ -139,22 +140,18 @@ $scope.recordClickO = function(catchBallO){
   console.log($scope.oMoves);
 };
 
-
+$scope.myNumber = 5;
 
 //Move Counter
   $scope.movecounter = 0 ;
 
   $scope.playerPicks = function(thisCell) {
- if($scope.gameInProgress == false) {
-  return
- }
     if (typeof thisCell.status == "number") { // if status is a number allow for status change
     $scope.movecounter = $scope.movecounter + 1 ; //increase movecounter incrementally by 1
 
     if (($scope.movecounter % 2) == 1) {  //if movecounter is odd do the following
    
       $scope.recordClickX(thisCell.status)
-
       thisCell.status = "X" ;
 
     } else { //if movecounter is even do the following
@@ -165,9 +162,8 @@ $scope.recordClickO = function(catchBallO){
     } 
      // console.log("Cell is now: (outside of loop) " + thisCell.status) ;
     };
-
-  winningFunction($scope.xMoves);
-  winningFunction($scope.oMoves);
+    winningFunction($scope.xMoves);
+   winningFunction($scope.oMoves);
  
   
 
