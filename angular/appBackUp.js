@@ -37,10 +37,10 @@ $scope.possibleWinner= [
 [0,4,8], [2,4,6]
 ];
 
-var player1 = (($scope.movecounter % 2) == 1) ? true : false;
-var player2 = (($scope.movecounter % 2) == 1) ? false: true;
+var player1 = {moveTurn: (($scope.movecounter % 2) == 1) ? true : false,  image: "null"}
+var player2 = (($scope.movecounter % 2) == 1) ? false: true, image: "null"}
 
-
+images
 
 
 
@@ -70,8 +70,6 @@ ticTacRef.once("value", function(data){
   $scope.$watch('gameContainer', function(){
   console.log('gameContainer changed!');
 });
-  
-
 
 var winningFunction = function(moves) {
   // Go through all 8 possible wining moves

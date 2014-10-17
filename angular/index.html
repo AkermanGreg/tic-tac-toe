@@ -2,51 +2,49 @@
 <!DOCTYPE html>
 <html ng-app="TTTApp">
 <head>
-  <link rel="stylesheet" href="style.css">
-  <link href='http://fonts.googleapis.com/css?family=Neucha|Ubuntu|Walter+Turncoat' rel='stylesheet' type='text/css'>
-  <!-- AngularJS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.19/angular.min.js"></script> 
-  <!-- Firebase -->
-  <script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
-  <!-- AngularFire -->
-  <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
-  <!--App  --> 
-  <script src="app.js"></script>
-  
 
+  <!--App  --> 
+   <link href='http://fonts.googleapis.com/css?family=Neucha|Ubuntu|Walter+Turncoat' rel='stylesheet' type='text/css'>
+  
+   <!-- Normalize CSS -->
+    <link rel="stylesheet" src="https://normalize-css.googlecode.com/svn/trunk/normalize.min.css">
+    <!-- App CSS -->
+  <link rel="stylesheet" href="style.css">
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.5/angular.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>
+    <!-- App javascript -->
+    <script src="app.js"></script>
 </head>
 <body><h1> Martians vs. Humans</h1>
-    <div ng-controller="TTTController" > 
-
+    <div ng-controller="TTTController" ng-model="gameContainer" > 
+  <div>MOVE COUNTER: {{gameContainer.moveCount}}</div>
    
-    <div class="leftBar2"> Martian Wins: <div x-ng-bind="gameScore.oScore"></div></div>
- <div class="rightBar2"> Earth Wins: <div x-ng-bind="gameScore.xScore"></div> </div>
-<div class="theBox">
-   <select ng-model="rateMe">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-    </select>
-  
-  <div x-my-directive="" x-rating-value="rateMe"></div>
-      <div x-ng-repeat="currentCell in cellList track by $index">
+  Earth Wins: <div x-ng-bind="gameContainer.theGameScore.oScore"></div>
+Martian Wins: <div x-ng-bind="gameContainer.theGameScore.xScore"></div> 
+<div x-ng-bind="render"></div>
 
-        <div class="allCellsAlways" ng-click="playerPicks(currentCell)"
+
+<button class="button" x-ng-click="resetButton()">Reset Button- Player {{imPlayer}}</button>
+<div class="theBox">
+
+
+      <div x-ng-repeat="currentCell in gameContainer.cellListArray">
+
+        <div class="allCellsAlways"
            x-ng-class="{xclass: currentCell.status=='X', oclass: currentCell.status =='O'}" ng-click="playerPicks(currentCell)" ng-click="{'allCellsAlways:active' : check}">
           Cell Contents: {{currentCell.status}}
         </div></div>
       </div>
-<div x-ng-bind="render"></div>
 
-
-
-        <button class="button" x-ng-click="resetButton()">Reset</button>
      
   
     </div>
 
+        
 </div>
 
 </body>
