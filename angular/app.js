@@ -22,13 +22,18 @@ FB=($scope.remoteGameContainer);
   $scope.cellList["7"] = {status: 7} ;
   $scope.cellList["8"] = {status: 8} ;
 
-
   $scope.gameInProgress = true;
   $scope.movecounter = 0;
   $scope.xMoves= [];
   $scope.oMoves= [];
-  $scope.render = "";
+
   $scope.gameScore= {xScore: 0, oScore: 0, ties: 0};
+
+  $scope.player1 = (($scope.movecounter % 2) == 1);
+  $scope.player2 = (($scope.movecounter % 2) == 0);
+
+  $scope.roundCounter = 0;
+
 
 //array with winning logic 
 $scope.possibleWinner= [
@@ -36,12 +41,6 @@ $scope.possibleWinner= [
 [0,3,6], [1,4,7], [2,5,8],
 [0,4,8], [2,4,6]
 ];
-
-var player1 = (($scope.movecounter % 2) == 1) ? true : false;
-var player2 = (($scope.movecounter % 2) == 1) ? false: true;
-
-
-
 
 
 ticTacRef.once("value", function(data){
@@ -61,6 +60,7 @@ ticTacRef.once("value", function(data){
         moveCount: $scope.movecounter,
         isGameInProgress: $scope.gameInProgress,
         theGameScore: $scope.gameScore,
+        render:"",
         numPlayers: $scope.imPlayer +1
       };
       $scope.remoteGameContainer.$bind($scope, "gameContainer");
@@ -70,10 +70,10 @@ ticTacRef.once("value", function(data){
   $scope.$watch('gameContainer', function(){
   console.log('gameContainer changed!');
 });
-  
-
 
 var winningFunction = function(moves) {
+  
+
   // Go through all 8 possible wining moves
   for (var j = 0; j < $scope.possibleWinner.length; j++) {
     // For each one of these, we'll count up as we go if we find matches.  3 in a row means a win!
@@ -99,32 +99,35 @@ var winningFunction = function(moves) {
     if(howManyMatches == 3) {
       $scope.gameContainer.isGameInProgress= false;
       // Holy shit, yes we did!  We have a winner.
-      if (player1)
+      if (($scope.gameContainer.moveCount % 2) == 1) 
       {
-        $scope.render = "X Has Won!"
+        $scope.gameContainer.render = "X Has Won!"
         console.log("X Wins: " + $scope.gameContainer.theGameScore.xScore);
-
         $scope.gameContainer.theGameScore.xScore ++;
+        $scope.roundCounter = 
 
           console.log($scope.gameContainer.moveCount, $scope.render);
+         
         }
+
         else
         {
-          $scope.render = "O Has Won!"
+        $scope.gameContainer.render  = "O Has Won!"
           console.log("O Wins: " + $scope.gameContainer.theGameScore.xScore);      
           $scope.gameContainer.theGameScore.oScore ++;
 
           console.log($scope.gameContainer.moveCount, $scope.render);
+           
         };
       }
     }
 
-
-    if ($scope.gameContainer.moveCount == 9 && $scope.render == "" ||
-      $scope.gameContainer.moveCount== 8 && $scope.render == "" )
+    if ($scope.gameContainer.moveCount == 9 && $scope.render == "" )
     {
 
-      $scope.render = "it's a tie";
+      $scope.gameContainer.render = "it's a tie";
+      $scope.gameContainer.theGameScore.ties ++;
+         
     }
 
   };
@@ -143,12 +146,12 @@ $scope.recordClickO = function(catchBallO){
 };
 
  $scope.playerPicks = function(thisCell)
-
  {
+console.log($scope.gameContainer)
+
   if ($scope.gameContainer.isGameInProgress == false || thisCell.status == "X" || thisCell.status == "O" || $scope.imPlayer != ($scope.gameContainer.moveCount % 2)){
       return;
     }    
-
       $scope.gameContainer.moveCount = $scope.gameContainer.moveCount + 1 ; //increase movecounter incrementally by 1
 
       if (($scope.gameContainer.moveCount % 2) == 1) {  //if movecounter is odd do the following
@@ -170,10 +173,9 @@ $scope.recordClickO = function(catchBallO){
    winningFunction($scope.oMoves);
 
  };
-
- $scope.resetButton = function(){
+$scope.resetButton = function(){
    
-//  $scope.gameContainer.cellListArray = new Object() ;
+  // $scope.gameContainer.cellListArray = new Object() ;
   $scope.gameContainer.cellListArray["0"].status = 0 ;
   $scope.gameContainer.cellListArray["1"].status = 1 ;
   $scope.gameContainer.cellListArray["2"].status = 2 ;
@@ -184,13 +186,14 @@ $scope.recordClickO = function(catchBallO){
   $scope.gameContainer.cellListArray["7"].status = 7 ;
   $scope.gameContainer.cellListArray["8"].status = 8 ;
 
- 
-$scope.gameContainer.moveCount = 0 ;
+  $scope.gameContainer.moveCount = 0 ;
 
-$scope.xMoves= [];
-$scope.oMoves= [];
-$scope.render = "";
-$scope.gameInProgress = true;
+  $scope.xMoves= [];
+  $scope.oMoves= [];
+  $scope.gameContainer.render = "";
+  $scope.gameContainer.isGameInProgress= true;
+
+ 
 
 };
 

@@ -23,9 +23,10 @@
     <div ng-controller="TTTController" ng-model="gameContainer" > 
   <div>MOVE COUNTER: {{gameContainer.moveCount}}</div>
    
-  Earth Wins: <div x-ng-bind="gameContainer.theGameScore.oScore"></div>
-Martian Wins: <div x-ng-bind="gameContainer.theGameScore.xScore"></div> 
-<div x-ng-bind="render"></div>
+  Earth Wins: <div x-ng-bind="gameContainer.theGameScore.xScore"></div>
+Mars Wins: <div x-ng-bind="gameContainer.theGameScore.oScore"></div> 
+Number of Ties: <div x-ng-bind="gameContainer.theGameScore.ties"></div> 
+<div x-ng-bind="gameContainer.render"></div>
 
 
 <button class="button" x-ng-click="resetButton()">Reset Button- Player {{imPlayer}}</button>
@@ -36,7 +37,7 @@ Martian Wins: <div x-ng-bind="gameContainer.theGameScore.xScore"></div>
 
         <div class="allCellsAlways"
            x-ng-class="{xclass: currentCell.status=='X', oclass: currentCell.status =='O'}" ng-click="playerPicks(currentCell)" ng-click="{'allCellsAlways:active' : check}">
-          Cell Contents: {{currentCell.status}}
+          
         </div></div>
       </div>
 

@@ -67,8 +67,9 @@ h1 {
     height:200px; 
 float: left;
     text-align: center;
-padding: 5px;
+margin:3px;
 border: 2px solid white;
+border-radius: 100px;
 -webkit-transition: width 2s, height 2s, -webkit-transform 2s; /* For Safari 3.1 to 6.0 */
     transition: width 2s, height 2s, transform 2s;
 }
@@ -79,14 +80,15 @@ border: 2px solid white;
 }
 
 .xclass {
-	background-image: url(mars.jpg);
+	background-image: url(earth.gif);
     background-size: 200px 200px;
     background-repeat: no-repeat;
     background-position: center;
+    border-radius: 100px;
 }
 
 .oclass {
-	background-image: url(willSmith.jpg);
+	background-image: url(mars.png);
      background-size: 200px 200px;
     background-repeat: no-repeat;
     background-position: center;;
@@ -94,4 +96,9 @@ border: 2px solid white;
 
 .blankclass {
 	background-color: gray ;
+}
+
+.button {
+    background-color: blue;
+    color: white;
 }
