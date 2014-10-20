@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html ng-app="TTTApp">
 <head>
-
+<title>Earth vs. Mars - Tic Tac Toe</title>
   <!--App  --> 
-   <link href='http://fonts.googleapis.com/css?family=Neucha|Ubuntu|Walter+Turncoat' rel='stylesheet' type='text/css'>
+   <link href='https://fonts.googleapis.com/css?family=Neucha|Ubuntu|Walter+Turncoat' rel='stylesheet' type='text/css'>
   
    <!-- Normalize CSS -->
     <link rel="stylesheet" src="https://normalize-css.googlecode.com/svn/trunk/normalize.min.css">
@@ -19,24 +19,38 @@
     <!-- App javascript -->
     <script src="app.js"></script>
 </head>
-<body><h1> Martians vs. Humans</h1>
+<body><h1> Earth vs. Mars Tic Tac Toe</h1>
     <div ng-controller="TTTController" ng-model="gameContainer" > 
-  <div>MOVE COUNTER: {{gameContainer.moveCount}}</div>
+ 
+<table width="90%" align="center" cellpadding="10px">
+  <tr>
+    <td>
+      You Are Player  #{{imPlayer}}
+    </td>
+    <td>
    
   Earth Wins: <div x-ng-bind="gameContainer.theGameScore.xScore"></div>
+</td>
+<td>
 Mars Wins: <div x-ng-bind="gameContainer.theGameScore.oScore"></div> 
+</td>
+<td>
 Number of Ties: <div x-ng-bind="gameContainer.theGameScore.ties"></div> 
-<div x-ng-bind="gameContainer.render"></div>
+</td>
+<td>
+  <button class="button" x-ng-click="resetButton()">Reset Button</button>
+</td>
+</tr>
+</table>
 
 
-<button class="button" x-ng-click="resetButton()">Reset Button- Player {{imPlayer}}</button>
 <div class="theBox">
-
+<div class="render" x-ng-bind="gameContainer.render"></div>
 
       <div x-ng-repeat="currentCell in gameContainer.cellListArray">
 
         <div class="allCellsAlways"
-           x-ng-class="{xclass: currentCell.status=='X', oclass: currentCell.status =='O'}" ng-click="playerPicks(currentCell)" ng-click="{'allCellsAlways:active' : check}">
+           x-ng-class="{xclass: currentCell.status=='X', oclass: currentCell.status =='O'}" ng-click="playerPicks(currentCell)" ng-click="{'allCellsAlways:active' : check}" >
           
         </div></div>
       </div>
@@ -45,7 +59,7 @@ Number of Ties: <div x-ng-bind="gameContainer.theGameScore.ties"></div>
   
     </div>
 
-        
+     
 </div>
 
 </body>
