@@ -1,179 +1,114 @@
+body {
+    background-image: url(http://p1.pichost.me/i/10/1328985.jpg);
+    color:white;
+    font-size:17px;
+    font-family: 'Ubuntu', sans-serif;
 
-body {background-color:#F2F2F2;}
-
-.container{
-  min-height: 100%;
-  margin: 0; 
-  border: 0;
 }
 
+.theBox {
+	height: 680px;
+    width:650px;
+    text-align: center;
+   
+  
+    margin: 0 auto; 
+}
 
 h1 {
-	background-color: black;
-	letter-spacing: 3px;
-	color: white;
-	font-size: 20px;
-	width: 800px;
-	padding: 10px;
-	margin: 0 auto; 
+    background-color: black;
+    letter-spacing: 3px;
+    color: red;
+    text-shadow: 1px 1px 1px white;
+    font-size: 30px;
+    vertical-align: middle;
+    width: 100%;
+   height: 50px;
+    margin: 0 auto;
+    text-align: center; 
+    font-family: 'Walter Turncoat', cursive;
+}
+.leftBar {
+    width: 50px;
+    background-color: black;
+    float:left;
+
+    color: white;
+
+}
+.rightBar {
+    width: 50px;
+    background-color: black;
+    float:right;
+    color: white;
+     
+
+}
+.leftBar2 {
+    width: 200px;
+    padding-left: 20px;
+    float:left;
+    height: 1000px;
+   color: white;
+
+}
+.rightBar2 {
+    width: 200px;
+  padding-right:20px;
+    float:right;
+    height: 1000px;
+  color: white;
+
 }
 
-#article{
-	height: 480px;
-	width:500px;
-	text-align: center;
-  /*background-color:red;*/
-	border-radius: 10px;
-  margin: 0 auto; 
-  
+.clearFix {clear:both;
 }
 
-#article img {
-	{width: 150px; height: 150px;}
-}
-.box{
-	width:150px; 
-	height:150px; 
+.allCellsAlways {
+   width:200px; 
+    height:200px; 
 float: left;
-	text-align: center;
-padding: 5px;
-
+    text-align: center;
+margin:3px;
+border: 2px solid white;
+border-radius: 100px;
+-webkit-transition: width 2s, height 2s, -webkit-transform 2s; /* For Safari 3.1 to 6.0 */
+    transition: width 2s, height 2s, transform 2s;
 }
 
-div img {width: 150px; height: 150px;}
-
-.r img {width: 150px; height: 150px;}
-
-.g img {width: 150px; height: 150px;}
-
-
-.b img {width: 150px; height: 150px;}
-
-.r{
-	background-color: lightgrey;
-
+.allCellsAlways:active {
+      -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
 }
 
-.g{
-	margin-left:15px;
-	margin-right:15px;
-	background-color: lightgrey;
-}
-
-.b{
-	background-color: lightgrey;
-}
-
-#c0 {
-	border-right: 1px solid black;
-	border-bottom: 1px solid black;
-}
-
-#c1 {
-	border-left: 1px solid black;
-	border-right: 1px solid black;
-	border-bottom: 1px solid black;
-}
-
-#c2 {
-	border-left: 1px solid black;
-
-	border-bottom: 1px solid black;
-}
-
-#c3 {
-	border-top: 1px solid black;
-	border-right: 1px solid black;
-	border-bottom: 1px solid black;
-}
-
-#c4 {
-	border-top: 1px solid black;
-	border-left: 1px solid black;
-	border-right: 1px solid black;
-	border-bottom: 1px solid black;
-}
-
-#c5 {
-	border-top: 1px solid black;
-	border-left: 1px solid black;
-
-	border-bottom: 1px solid black;
-}
-#c6 {
-	border-top: 1px solid black;
-	
-
-	border-right: 1px solid black;
-}
-#c7 {
-	border-top: 1px solid black;
-	border-left: 1px solid black;
-	border-right: 1px solid black;
-	
-}
-
-#c8 {
-	border-top: 1px solid black;
-	border-left: 1px solid black;
-	
-}
-
-.boxForX {
-	background-image: url(x.png);
-	background-size: 125px 125px;
+.xclass {
+	background-image: url(earth.gif);
+    background-size: 200px 200px;
     background-repeat: no-repeat;
     background-position: center;
-
-    float: left;
-    width:150px; 
-	height:150px; 
-	text-align: center;
-	padding: 5px;
-
+    border-radius: 100px;
 }
 
-.boxForO {
-	background-image: url(O.png);
-	background-size: 125px 125px;
+.oclass {
+	background-image: url(mars.png);
+     background-size: 210px 210px;
     background-repeat: no-repeat;
-    background-position: center;
-
-    float: left;
-    width:150px; 
-	height:150px; 
-	text-align: center;
-	padding: 5px;
+    background-position: center;;
 }
 
-
-p {
-	display: table-cell; 
-	width: 150px; 
-	height: 150px; 
-	vertical-align: middle; 
-	text-align: center; 
-	font-family: arial; 
-	font-size: 35pt; 
-	color: black;
+.blankclass {
+	background-color: gray ;
 }
 
-/*the usual suspects begin*/
-.float_right{
-	float: right;
+.button {
+    background-color: blue;
+    color: white;
+    font-size:16px;
 }
-.float_left{
-	float: left;
-}
-/*needed to cause auto expansion of container div*/
-.clearboth{
-	clear: both;
-}
-/*the usual suspects end*/
-html {
-    height: 100%;
-    }
 
-body {
-    height: 100%;
-    }
+.render {
+    font-size: 40px;
+    -ms-transform: rotate(7deg); /* IE 9 */
+    -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
+    transform: rotate(7deg);
+}
