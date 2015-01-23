@@ -22,7 +22,7 @@
 <body><h1> Earth vs. Mars Tic Tac Toe</h1>
     <div ng-controller="TTTController" ng-model="gameContainer" > 
  
-<table width="90%" align="center" cellpadding="10px">
+<table width="90%" align="right" cellpadding="10px">
   <tr>
     <td>
       You Are Player  #{{imPlayer}} 
@@ -37,14 +37,26 @@ Mars Wins: <div x-ng-bind="gameContainer.theGameScore.oScore"></div>
 <td>
 Number of Ties: <div x-ng-bind="gameContainer.theGameScore.ties"></div> 
 </td>
-<td>
-  <button class="button" x-ng-click="resetButton()">Reset Button</button>
+<td width="30%">
+  <button class="button" x-ng-click="resetButton()">Reset Button</button><br />
+
+    
+        
 </td>
 </tr>
 </table>
 
 
-    CLICK COUNTER: {{gameContainer.moveCount}}
+    CLICK COUNTER: {{gameContainer.moveCount}}<br />
+        <button class="buttonRules" ng-click="rules = !rules">Rules!</button>
+          <div ng-show="rules" class="rules">
+          <p>Tic Tac Toe is a two player game that can be played on either one or two computers, smartphones, or tablets.
+          </p>
+          <p> X always moves first and places a piece on any empty space. Then it's O's turn to do the same. A player wins by being the first to connect three spaces in a row. If no player is able to connect three spaces, it's a tie and the game is over. Enjoy!
+          </p>
+
+    
+          </div>
 <div class="theBox">
 <div class="render" x-ng-bind="gameContainer.render"></div>
 

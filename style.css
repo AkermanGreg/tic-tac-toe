@@ -106,9 +106,26 @@ border-radius: 100px;
     font-size:16px;
 }
 
+.buttonRules {
+    background-color: blue;
+    color: white;
+    font-size:16px;
+    margin-top:20px;
+}
+
 .render {
     font-size: 40px;
     -ms-transform: rotate(7deg); /* IE 9 */
     -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
     transform: rotate(7deg);
+}
+
+.rules {
+
+    width: 250px; 
+    float:left;
+    padding-left:20px;
+    padding-top:20px;
+
+
 }
